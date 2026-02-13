@@ -144,37 +144,21 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F5F1EC]">
+    <div className="min-h-screen bg-[#F5F1EC] overflow-x-hidden">
       
-      {/* Decorative Curve - Top */}
-      <div className="absolute top-0 left-0 w-full h-64 overflow-hidden pointer-events-none">
-        <svg viewBox="0 0 1440 320" className="absolute bottom-0 w-full" preserveAspectRatio="none">
-          <path fill="#D4C4B0" fillOpacity="0.3" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,133.3C672,139,768,181,864,181.3C960,181,1056,139,1152,128C1248,117,1344,139,1392,149.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
-        </svg>
-      </div>
-
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image 
-            src="/hero-flyer.jpg" 
-            alt="Peptide Pros" 
-            fill
-            className="object-cover opacity-15"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#F5F1EC]/95 via-white/90 to-[#D4C4B0]/60" />
-        </div>
-
-        {/* Decorative Curves */}
-        <svg className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none" viewBox="0 0 1440 800" preserveAspectRatio="none">
-          <path fill="none" stroke="#6B7655" strokeWidth="3" d="M0,400 Q360,200 720,400 T1440,400" />
-          <path fill="none" stroke="#D4C4B0" strokeWidth="2" d="M0,450 Q360,250 720,450 T1440,450" />
+      {/* Hero Section with Circular Photo Flow */}
+      <section className="relative min-h-screen flex items-center justify-center py-20 px-6 overflow-hidden">
+        
+        {/* Flowing curved background lines */}
+        <svg className="absolute inset-0 w-full h-full opacity-20 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1440 900">
+          <path d="M-100,200 Q200,100 400,250 T800,300 Q1000,350 1200,250 T1600,400" fill="none" stroke="#6B7655" strokeWidth="3"/>
+          <path d="M-100,400 Q300,250 600,450 T1200,400 Q1400,380 1600,500" fill="none" stroke="#D4C4B0" strokeWidth="2"/>
+          <path d="M-100,600 Q200,500 500,650 T1000,600 Q1200,550 1600,700" fill="none" stroke="#6B7655" strokeWidth="2" opacity="0.5"/>
         </svg>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center">
-          <motion.div {...fadeInUp}>
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header */}
+          <motion.div {...fadeInUp} className="text-center mb-16">
             <h1 className="text-6xl md:text-8xl font-bold text-[#4A3933] mb-4 tracking-tight">
               PEPTIDE PROS
             </h1>
@@ -188,29 +172,81 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <motion.p 
-            {...fadeInUp}
-            transition={{ delay: 0.2 }}
-            className="text-2xl md:text-3xl text-[#4A3933] max-w-3xl mx-auto mb-6 font-light"
-          >
-            Clear education. Local support. Real conversations.
-          </motion.p>
-          
-          <motion.p 
-            {...fadeInUp}
-            transition={{ delay: 0.3 }}
-            className="text-lg text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed"
-          >
-            Peptide Pros is a <span className="font-semibold text-[#4A3933]">Las Vegas based</span> education and sourcing company helping adults explore peptide research <span className="font-semibold text-[#6B7655]">responsibly and confidently</span>.
-          </motion.p>
-          
-          <motion.div 
-            {...fadeInUp}
-            transition={{ delay: 0.4 }}
-            className="mb-12"
-          >
-            <p className="text-xl font-semibold text-[#4A3933] mb-8">
-              Have a question? Text us directly.
+          {/* Circular Photo Grid with Curved Flow */}
+          <div className="relative mb-16">
+            {/* Large Couple Photo - Center Left with Oval Cutout */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="relative mx-auto md:ml-0 md:mr-auto w-80 h-96 md:w-96 md:h-[500px] mb-8 md:mb-0"
+            >
+              <div className="relative w-full h-full rounded-[50%/60%] overflow-hidden shadow-2xl border-4 border-white">
+                <Image 
+                  src="/couple-gym.jpg"
+                  alt="Active Adults at Gym"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              {/* Curved swoosh around couple */}
+              <svg className="absolute -top-10 -right-10 w-32 h-32 opacity-30" viewBox="0 0 100 100">
+                <path d="M10,50 Q30,10 50,30 T90,50" fill="none" stroke="#6B7655" strokeWidth="3"/>
+              </svg>
+            </motion.div>
+
+            {/* Man Jogging - Circular Top Right */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="absolute top-0 right-4 md:right-12 w-56 h-56 md:w-72 md:h-72"
+            >
+              <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                <Image 
+                  src="/man-jogging.jpg"
+                  alt="Active Mature Man"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              {/* Curved flow line */}
+              <svg className="absolute -bottom-8 -left-8 w-24 h-24 opacity-30" viewBox="0 0 100 100">
+                <path d="M90,10 Q50,30 30,70" fill="none" stroke="#D4C4B0" strokeWidth="4"/>
+              </svg>
+            </motion.div>
+
+            {/* Woman with Coffee - Circular Bottom Right */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="absolute bottom-0 right-8 md:right-20 w-52 h-52 md:w-64 md:h-64"
+            >
+              <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                <Image 
+                  src="/woman-coffee.jpg"
+                  alt="Woman with Coffee"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              {/* Curved accent */}
+              <svg className="absolute -top-6 -right-6 w-20 h-20 opacity-30" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="30" fill="none" stroke="#6B7655" strokeWidth="2"/>
+              </svg>
+            </motion.div>
+          </div>
+
+          {/* Tagline & CTA */}
+          <motion.div {...fadeInUp} transition={{ delay: 0.6 }} className="text-center mt-24 md:mt-32">
+            <p className="text-2xl md:text-3xl text-[#4A3933] max-w-3xl mx-auto mb-6 font-light">
+              Clear education. Local support. Real conversations.
+            </p>
+            
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
+              Las Vegas based education and sourcing company helping adults explore peptide research <span className="font-semibold text-[#6B7655]">responsibly and confidently</span>.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
@@ -218,10 +254,9 @@ export default function Home() {
                 href={smsLink}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-10 py-5 bg-[#6B7655] text-white font-bold text-lg rounded-full overflow-hidden shadow-xl"
+                className="px-10 py-5 bg-[#6B7655] text-white font-bold text-lg rounded-full shadow-xl hover:bg-[#4A3933] transition-colors"
               >
-                <span className="relative z-10">Text a Local Nurse</span>
-                <div className="absolute inset-0 bg-[#4A3933] opacity-0 group-hover:opacity-100 transition-opacity" />
+                Text a Local Nurse
               </motion.a>
               
               <motion.a
@@ -240,19 +275,15 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Bottom Curve */}
+        {/* Bottom curve separator */}
         <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 120" preserveAspectRatio="none">
           <path fill="white" d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,69.3C960,85,1056,107,1152,101.3C1248,96,1344,64,1392,48L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
         </svg>
       </section>
 
-      {/* Why Section */}
-      <section className="py-24 px-6 bg-white relative overflow-hidden">
-        <svg className="absolute right-0 top-1/2 -translate-y-1/2 opacity-10" width="400" height="400" viewBox="0 0 400 400">
-          <path fill="none" stroke="#D4C4B0" strokeWidth="8" d="M200,50 Q300,100 250,200 T200,350" />
-        </svg>
-
-        <div className="max-w-6xl mx-auto relative z-10">
+      {/* Why Section - Redesigned with Photo */}
+      <section className="py-24 px-6 bg-white relative">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -261,7 +292,7 @@ export default function Home() {
             <h2 className="text-5xl md:text-6xl font-bold text-[#4A3933] mb-4 text-center">
               Why Peptide Pros
             </h2>
-            <div className="flex justify-center gap-2 mb-12">
+            <div className="flex justify-center gap-2 mb-16">
               <div className="w-16 h-1 bg-[#6B7655] rounded-full" />
               <div className="w-16 h-1 bg-[#D4C4B0] rounded-full" />
             </div>
@@ -277,18 +308,16 @@ export default function Home() {
               <p className="text-xl text-gray-700 leading-relaxed">
                 Most peptide websites are anonymous and transactional.
               </p>
-              <p className="text-xl text-[#4A3933] font-bold leading-relaxed">
+              <p className="text-2xl text-[#4A3933] font-bold leading-relaxed">
                 At Peptide Pros, you speak with a real local nurse before making decisions.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
                 We educate you about what compounds are, how they are discussed in research, and what questions you should be asking.
               </p>
-              <div className="flex gap-4 items-start p-6 bg-[#F5F1EC] rounded-2xl border-l-4 border-[#6B7655]">
-                <div className="text-[#4A3933] font-bold text-lg">Education First</div>
+              <div className="p-6 bg-[#F5F1EC] rounded-2xl border-l-4 border-[#6B7655]">
+                <p className="text-[#4A3933] font-bold text-lg mb-2">No pressure. No hype. Just clarity.</p>
+                <p className="text-gray-700">Education first, sourcing second.</p>
               </div>
-              <p className="text-lg font-semibold text-[#6B7655]">
-                No pressure. No hype. Just clarity.
-              </p>
             </motion.div>
 
             <motion.div
@@ -297,18 +326,23 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <Image 
-                  src="/hero-flyer.jpg" 
-                  alt="Your Local Peptide Consulting Experts"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
+              {/* Curved photo cutout */}
+              <div className="relative w-full aspect-square max-w-md mx-auto">
+                <div className="absolute inset-0 rounded-[60%_40%_70%_30%/40%_50%_60%_50%] overflow-hidden shadow-2xl border-4 border-white">
+                  <Image 
+                    src="/couple-gym.jpg"
+                    alt="Your Local Experts"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                {/* Curved accent lines */}
+                <svg className="absolute -bottom-6 -right-6 w-32 h-32 opacity-20 -z-10" viewBox="0 0 100 100">
+                  <path d="M20,80 Q40,20 80,40 T90,90" fill="none" stroke="#6B7655" strokeWidth="4"/>
+                </svg>
               </div>
-              <div className="absolute -bottom-4 -right-4 bg-[#6B7655] text-white px-6 py-4 rounded-2xl shadow-xl">
-                <p className="text-sm font-semibold uppercase tracking-wide">Locally Owned</p>
-                <p className="text-2xl font-bold">Las Vegas</p>
+              <div className="absolute -bottom-4 -right-4 bg-[#6B7655] text-white px-6 py-4 rounded-full shadow-xl z-10">
+                <p className="text-sm font-bold uppercase">Las Vegas</p>
               </div>
             </motion.div>
           </div>
@@ -317,7 +351,6 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
             className="text-center mt-16"
           >
             <motion.a
@@ -332,12 +365,8 @@ export default function Home() {
       </section>
 
       {/* Who We Work With */}
-      <section className="py-24 px-6 bg-gradient-to-br from-[#F5F1EC] to-white relative overflow-hidden">
-        <svg className="absolute left-0 bottom-0 opacity-10" width="300" height="300" viewBox="0 0 300 300">
-          <path fill="none" stroke="#6B7655" strokeWidth="6" d="M50,150 Q100,50 150,150 T250,150" />
-        </svg>
-
-        <div className="max-w-7xl mx-auto relative z-10">
+      <section className="py-24 px-6 bg-gradient-to-br from-[#F5F1EC] to-white relative">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -376,20 +405,11 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center text-xl text-[#4A3933] font-semibold mt-12"
-          >
-            If that sounds like you, text us.
-          </motion.p>
         </div>
       </section>
 
-      {/* Compounds Grid */}
-      <section id="compounds" className="py-24 px-6 bg-white relative overflow-hidden">
+      {/* Compounds - Keeping existing grid */}
+      <section id="compounds" className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -456,7 +476,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Compound Modal */}
+      {/* Modal - unchanged */}
       {selectedCompound && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -533,9 +553,6 @@ export default function Home() {
       {/* Benefits Banner */}
       <section className="relative py-16 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#4A3933] via-[#6B7655] to-[#4A3933]" />
-        <svg className="absolute top-0 left-0 w-full h-full opacity-20" viewBox="0 0 1440 120" preserveAspectRatio="none">
-          <path fill="none" stroke="white" strokeWidth="2" d="M0,60 Q360,20 720,60 T1440,60" />
-        </svg>
         
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
@@ -565,12 +582,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact CTA - Flyer Style */}
+      {/* Contact CTA */}
       <section className="py-20 px-6 bg-gradient-to-br from-[#6B7655] to-[#4A3933] text-white relative overflow-hidden">
-        <svg className="absolute bottom-0 right-0 opacity-10" width="500" height="500" viewBox="0 0 500 500">
-          <path fill="none" stroke="white" strokeWidth="8" d="M100,250 Q200,100 300,250 T500,250" />
-        </svg>
-
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -589,35 +602,27 @@ export default function Home() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto"
+            className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-12"
           >
             <div className="bg-[#4A3933] p-8 rounded-2xl">
-              <div className="text-4xl mb-4">📍</div>
+              <p className="text-4xl mb-4">📍</p>
               <p className="text-2xl font-bold mb-3">LOCAL DELIVERY</p>
               <p className="opacity-90">Convenient same-day delivery right to your door</p>
             </div>
             <div className="bg-[#4A3933] p-8 rounded-2xl">
-              <div className="text-4xl mb-4">🏷️</div>
+              <p className="text-4xl mb-4">🏷️</p>
               <p className="text-2xl font-bold mb-3">PRICE MATCH GUARANTEE</p>
               <p className="opacity-90">Best prices on the highest quality peptides</p>
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="mt-12"
+          <motion.a
+            href={smsLink}
+            whileHover={{ scale: 1.05 }}
+            className="inline-block px-12 py-5 bg-white text-[#4A3933] font-bold text-xl rounded-full shadow-2xl"
           >
-            <motion.a
-              href={smsLink}
-              whileHover={{ scale: 1.05 }}
-              className="inline-block px-12 py-5 bg-white text-[#4A3933] font-bold text-xl rounded-full shadow-2xl"
-            >
-              Start Your Journey
-            </motion.a>
-          </motion.div>
+            Start Your Journey
+          </motion.a>
         </div>
       </section>
 
